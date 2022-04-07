@@ -1,8 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
+
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 // 3.7 Add morgan middleware to your application and configure it 
 // to log messages to your console BASED ON the tiny config.
@@ -135,6 +139,7 @@ app.post("/api/persons", (request, response) => {
 
 });
 
-const PORT = 3001;
-app.listen(PORT);
-console.log(`Server running on port ${PORT}`);
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+})
